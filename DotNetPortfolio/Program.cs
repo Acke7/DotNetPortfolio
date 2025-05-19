@@ -2,6 +2,7 @@ using DataAccessLayer;
 using DataAccessLayer.Models;
 using Microsoft.EntityFrameworkCore;
 using PortfolioServices;
+using Services.Portfolio;
 
 
 
@@ -19,6 +20,7 @@ namespace DotNetPortfolio
             builder.Services.AddRazorPages();
             builder.Services.AddScoped<DataInitializer>();
             builder.Services.AddScoped<IPortfolioService, PortfolioService>();
+            builder.Services.AddScoped<IEmailService, EmailService>();
             var app = builder.Build();
 
             using (var scope = app.Services.CreateScope())

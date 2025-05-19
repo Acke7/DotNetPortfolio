@@ -1,0 +1,11 @@
+﻿/* Make lightbox image wider */
+.lightbox .lb-image {
+    max-width: 95vw !important; /* wider image */
+    max-height: 90vh !important; /* taller image */
+}
+
+/* Enlarge caption text if needed */
+.lightbox .lb-caption {
+    font-size: 18px;
+    color: #fff;
+}
