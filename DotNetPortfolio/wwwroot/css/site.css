@@ -9,3 +9,15 @@
     font-size: 18px;
     color: #fff;
 }
+.github-link {
+    margin-top: 10px;
+}
+
+    .github-link img {
+        transition: transform 0.2s ease;
+    }
+
+        .github-link img:hover {
+            transform: scale(1.2);
+        }
+

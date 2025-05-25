@@ -34,6 +34,23 @@ namespace DotNetPortfolio
                 app.UseExceptionHandler("/Error");
                 app.UseHsts();
             }
+            app.MapGet("/api/weather", async () =>
+            {
+                var httpClient = new HttpClient();
+                var apiKey = "cb13ded496cfee0d1e4ded291a984836";
+                var city = "Stockholm";  // or make this configurable
+
+                var response = await httpClient.GetAsync(
+                    $"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={apiKey}&units=metric");
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    return Results.Problem("Could not fetch weather data");
+                }
+
+                var json = await response.Content.ReadAsStringAsync();
+                return Results.Content(json, "application/json");
+            });
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();

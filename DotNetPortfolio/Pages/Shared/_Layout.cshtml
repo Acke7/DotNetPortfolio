@@ -54,6 +54,34 @@
     <script src="~/js/main.js" asp-append-version="true"></script>
     <!-- Lightbox JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    <script>
+        async function loadWeather() {
+            try {
+                const response = await fetch('/api/weather');
+                const data = await response.json();
+
+                const temp = data.main.temp.toFixed(1);
+                const city = data.name;
+                const description = data.weather[0].description;
+                const icon = data.weather[0].icon;
+
+                document.getElementById('weather-content').innerHTML = `
+                    <div class="d-flex align-items-center">
+                       <img src="https://openweathermap.org/img/wn/${icon}@@2x.png" alt="${description}" style="width: 50px; height: 50px;">
+
+                        <div class="ms-3">
+                            <div><strong>${city}</strong></div>
+                            <div>${temp}°C, ${description}</div>
+                        </div>
+                    </div>
+                `;
+            } catch (error) {
+                document.getElementById('weather-content').innerText = 'Failed to load weather.';
+            }
+        }
+
+        loadWeather();
+    </script>
 
 
     @await RenderSectionAsync("Toasts", required: false)
