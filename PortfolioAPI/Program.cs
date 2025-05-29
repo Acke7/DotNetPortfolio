@@ -27,6 +27,17 @@ using (var scope = app.Services.CreateScope())
     scope.ServiceProvider.GetService<DataInitializer>().SeedData();
 }
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.
+         GetRequiredService<PortfolioDbContext>();
+    if (dbContext.Database.IsRelational())
+    {
+        dbContext.Database.Migrate();
+    }
+}
+
+
 if (app.Environment.IsDevelopment() || app.Environment.IsProduction())
 {
     app.UseSwagger();

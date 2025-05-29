@@ -9,13 +9,13 @@ namespace DotNetPortfolio.Pages
 {
 public class IndexModel : PageModel
 {
-    private readonly IPortfolioService _projectService;
+    //private readonly IPortfolioService _projectService;
         private readonly IEmailService _emailService;
         public List<ProjectViewModel> Projects { get; set; } = new();
     
-        public IndexModel(IPortfolioService projectService, IEmailService emailService)
+        public IndexModel(/*IPortfolioService projectService,*/ IEmailService emailService)
         {
-            _projectService = projectService;
+            //_projectService = projectService;
             _emailService = emailService;
         }
 
@@ -50,16 +50,16 @@ public class IndexModel : PageModel
 
         public void OnGet()
     {
-        var dtos = _projectService.GetAllProjects();
+        //var dtos = _projectService.GetAllProjects();
 
-        Projects = dtos.Select(dto => new ProjectViewModel
-        {
-            Title = dto.Title,
-            TechStack = dto.TechStack,
-            Description = dto.Description,
-            GithubUrl = dto.GithubUrl,
-            DemoUrl = dto.DemoUrl
-        }).ToList();
+        //Projects = dtos.Select(dto => new ProjectViewModel
+        //{
+        //    Title = dto.Title,
+        //    TechStack = dto.TechStack,
+        //    Description = dto.Description,
+        //    GithubUrl = dto.GithubUrl,
+        //    DemoUrl = dto.DemoUrl
+        //}).ToList();
     }
 }
 
